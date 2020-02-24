@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="@localhost" uuid="ddfbffe9-78aa-4142-b420-74e31bd84558">
+      <database-info product="Microsoft SQL Server" version="Microsoft SQL Server  2000 - 8.00.2039 (Intel X86) &#10;&#9;May  3 2005 23:18:38 &#10;&#9;Copyright (c) 1988-2003 Microsoft Corporation&#10;&#9;Developer Edition on Windows NT 6.1 (Build 7601: Service Pack 1)&#10;" jdbc-version="2.1" driver-name="SQLServer" driver-version="2.2.0022" dbms="MSSQL" exact-version="8.0.2039" exact-driver-version="2.2">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>sa</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="@localhost_mysql" uuid="4d662484-4205-4917-abd3-5154a2e111f9">
+      <database-info product="MySQL" version="5.7.18" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" dbms="MYSQL" exact-version="5.7.18" exact-driver-version="5.1">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>
