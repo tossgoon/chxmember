@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="chxmember:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/chxmember_war</output-path>
+    <root id="archive" name="chxmember_war.war">
+      <element id="artifact" artifact-name="chxmember:war exploded" />
+    </root>
+  </artifact>
+</component>
