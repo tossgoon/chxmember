@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.chx.dao.IChxMemDao">
+
+    <!--获得会员信息并分页 -->
+    <select id="getAllChxMems" resultType="ChxMem">
+       select  * from chx_member
+    </select>
+    <!-- 获得单个会员通过编号 -->
+    <select id="getChxMemById" parameterType="int" resultType="ChxMem">
+        select * from chx_member where MemID=#{memId}
+    </select>
+    <!--新增加会员 -->
+    <insert id="add2" parameterType="ChxMem" keyProperty="memid" useGeneratedKeys="true">
+        insert into chx_member(CardID,MemName,KindName,Sex,Age,Work_Unit,BirthDay,BirthDay_Lunar,
+            Medical_History,Nature,Talk_Willing,Talk_Way,Talk_Topic,Consume_Pattern,Income,Health_Focus,
+            Price_Focus,Brand_Focus,Accept_Recommend,Other_Info,Card_Use_Type)
+            values(
+            #{cardId,jdbcType=INTEGER},#{memName,jdbcType=VARCHAR},#{kindName,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{age,jdbcType=INTEGER},#{workUnit,jdbcType=VARCHAR},#{birthDay,jdbcType=TIMESTAMP},#{birthDayLunar,jdbcType=TIMESTAMP},
+            #{medicalHistory,jdbcType=VARCHAR},#{nature,jdbcType=VARCHAR},#{talkWilling,jdbcType=VARCHAR},#{talkWay,jdbcType=VARCHAR},#{talkTopic,jdbcType=VARCHAR},#{consumePattern,jdbcType=VARCHAR},#{income,jdbcType=VARCHAR},#{healthFocus,jdbcType=VARCHAR},
+            #{priceFocus,jdbcType=VARCHAR},#{brandFocus,jdbcType=VARCHAR},#{acceptRecommend,jdbcType=VARCHAR},#{otherInfo,jdbcType=VARCHAR},#{cardUseType,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 修改会员 -->
+    <update id="edit2" parameterType="ChxMem">
+        update chx_member set CardID=#{cardId,jdbcType=INTEGER},MemName=#{memName,jdbcType=VARCHAR},KindName=#{kindName,jdbcType=VARCHAR},Sex=#{sex,jdbcType=VARCHAR},Age=#{age,jdbcType=INTEGER},Work_Unit=#{workUnit,jdbcType=VARCHAR},
+            BirthDay=#{birthDay,jdbcType=TIMESTAMP},BirthDay_Lunar=#{birthDayLunar,jdbcType=TIMESTAMP},Medical_History=#{medicalHistory,jdbcType=VARCHAR},Nature=#{nature,jdbcType=VARCHAR},Talk_Willing=#{talkWilling,jdbcType=VARCHAR},
+            Talk_Way=#{talkWay,jdbcType=VARCHAR},Talk_Topic=#{talkTopic,jdbcType=VARCHAR},Consume_Pattern=#{consumePattern,jdbcType=VARCHAR},Income=#{income,jdbcType=VARCHAR},Health_Focus=#{healthFocus,jdbcType=VARCHAR},
+            Price_Focus=#{priceFocus,jdbcType=VARCHAR},Brand_Focus=#{brandFocus,jdbcType=VARCHAR},Accept_Recommend=#{acceptRecommend,jdbcType=VARCHAR},Other_Info=#{otherInfo,jdbcType=VARCHAR},
+            Card_Use_Type=#{cardUseType,jdbcType=VARCHAR},Create_Date=#{createDate,jdbcType=TIMESTAMP}, create_User=#{createUser,jdbcType=VARCHAR},Shop_Code=#{shopCode,jdbcType=VARCHAR}
+            where mem_id=#{memId}
+    </update>
+    <!-- 删除会员 -->
+    <delete id="delete">
+        delete from chx_member where MemID=#{memId}
+    </delete>
+
+    <!-- 根据分页数据start 和size查询数据 -->
+    <select id="findByPage"  parameterType="java.util.Map" resultType="ChxMem">
+        select top ${pagesize} *
+        from chx_member
+        <if test="pagestart!=null and pagesize!=null">
+            where MemID>=
+            (select max(MemID)
+            from (select top ${pagestart} MemID
+            from chx_member
+            order by  MemID asc) temp_max_ids)
+            order by MemID;
+        </if>
+    </select>
+    <!-- 查询会员记录总数 -->
+    <select id="selectCount" resultType="int">
+		select count(*) from chx_member
+	</select>
+    <!-- 根据分页数据start 和size查询数据 -->
+    <select id="searchByPage"  parameterType="java.util.Map" resultType="ChxMem">
+        select top ${pagesize} *
+        from chx_member
+        <if test="pagestart!=null and pagesize!=null">
+            where MemID>=
+            (select max(MemID)
+            from (select top ${pagestart} MemID
+            from chx_member where MemName like '%${searchstr}%'
+            order by  MemID asc) temp_max_ids)
+            and MemName like '%${searchstr}%'
+            order by MemID;
+        </if>
+    </select>
+    <!-- 查询会员记录总数-查询 -->
+    <select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from chx_member
+        <if test="searchStr!=null and searchStr!=''">
+         Where MemName like  '%${searchStr}%'
+        </if>
+	</select>
+</mapper>

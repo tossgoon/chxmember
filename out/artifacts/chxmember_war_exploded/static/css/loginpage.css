@@ -1,0 +1,4 @@
+.header{height:62px;overflow:hidden;zoom:1;border-bottom:1px solid #d6dfea;background:#eff4fa;}
+.header_link{overflow:hidden;margin-top:16px;line-height:30px;text-align:center;color:#6495ED;}
+.content{width:960px;margin:52px auto;padding:0 34px;}
+.footer{position:fixed;_position:static;left:0;right:0;bottom:0;z-index:2;clear:both;line-height:36px;text-align:center;color:#6495ED;background-color:#eff4fa;border-top:1px solid #d6dfea;}

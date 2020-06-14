@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.chx.dao.IChxPurDao">
+
+    <!--获得信息并分页 -->
+    <select id="getAllChxPurs" resultType="ChxPur">
+       select  * from chx_purchase
+    </select>
+    <!-- 获得单个会员通过编号 -->
+    <select id="getChxPurById" parameterType="int" resultType="ChxPur">
+        select * from chx_purchase where id=#{id}
+    </select>
+
+    <!-- 删除会员 -->
+    <delete id="delete">
+        delete from chx_purchase where id=#{id}
+    </delete>
+
+    <!-- 分页查询数据（按条件） -->
+    <select id="searchByPage"  parameterType="java.util.Map" resultType="ChxPur">
+        select top ${pagesize} *
+        from chx_member
+        <if test="pagestart!=null and pagesize!=null and shopcode!=null">
+            where MemID>=
+                (select max(MemID)
+                    from (select top ${pagestart} MemID
+                        from chx_member
+                        where Shop_Code='${shopcode}'
+                            <if test="searchStr!=null and searchStr!=''">
+                                and MemName like '%${searchStr}%'
+                            </if>
+                        order by  MemID asc)
+                temp_max_ids)
+            and Shop_Code='${shopcode}'
+            <if test="searchStr!=null and searchStr!=''">
+                and MemName like '%${searchStr}%'
+            </if>
+            order by MemID;
+        </if>
+    </select>
+    <!-- 查询会员记录总数-（查询条件） -->
+    <select id="searchCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from chx_member
+        <where>
+            <if test="searchStr!=null and searchStr!=''">
+                and MemName like  '%${searchStr}%'
+            </if>
+            <if test="shopcode!=null and shopcode!=''">
+               and Shop_Code='${shopcode}'
+            </if>
+        </where>
+	</select>
+</mapper>
