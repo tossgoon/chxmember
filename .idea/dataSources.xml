@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="@localhost" uuid="ddfbffe9-78aa-4142-b420-74e31bd84558">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.jdbc.sqlserver.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:microsoft:sqlserver://localhost:1433;databaseName=y707</jdbc-url>
+      <driver-properties>
+        <property name="databaseName" value="y707" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="@localhost_mysql" uuid="4d662484-4205-4917-abd3-5154a2e111f9">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/y707</jdbc-url>
+    </data-source>
+  </component>
+</project>
