@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.1</version>
+            <version>3.5.6</version>
         </dependency>
         <!-- JUnit单元测试工具 -->
         <dependency>
